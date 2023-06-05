@@ -106,7 +106,7 @@ def get_arguments() -> argparse.Namespace:
     parser.add_argument('rust_driver_git', help='folder with git repository of rust-driver')
     parser.add_argument('--versions', default=versions,
                         help='rust-driver versions to test, default={}'.format(','.join(versions)))
-    parser.add_argument('--tests', choices=['rust', 'serverless', 'tls'], nargs='*', type=str,
+    parser.add_argument('--tests', choices=['rust', 'serverless', 'tls'], defaults='rust', nargs='*', type=str,
                         help='tests to run')
     parser.add_argument('--scylla-version', help="relocatable scylla version to use",
                         default=os.environ.get('SCYLLA_VERSION', None)),

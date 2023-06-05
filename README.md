@@ -10,7 +10,7 @@
 * CCM
 
 #### Installing dependencies
-Docker image include all needed dependencies 
+Docker image include all needed dependencies
 
 ##### Repositories dependencies
 All repositories should be under the **same base folder**

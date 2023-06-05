@@ -22,13 +22,7 @@ if [[ ! -d ${RUST_MATRIX_DIR} ]]; then
     echo "${help_text}"
     exit 1
 fi
-#if [[ ! -d ${CCM_DIR} ]]; then
-#    echo -e "\e[31m\$CCM_DIR = $CCM_DIR doesn't exist\e[0m"
-#    echo "${help_text}"
-#    exit 1
-#fi
 
-#mkdir -p ${HOME}/.ccm
 mkdir -p ${HOME}/.local/lib
 mkdir -p ${HOME}/.docker
 
@@ -64,11 +58,10 @@ done
 
 docker_cmd="docker run --detach=true \
     ${WORKSPACE_MNT} \
-#    ${DOCKER_COMMAND_PARAMS} \
+    ${DOCKER_COMMAND_PARAMS} \
     ${DOCKER_CONFIG_MNT} \
     -v ${RUST_MATRIX_DIR}:${RUST_MATRIX_DIR} \
     -v ${RUST_DRIVER_DIR}:${RUST_DRIVER_DIR} \
-    -v ${CCM_DIR}:${CCM_DIR} \
     -e HOME \
     -e SCYLLA_EXT_OPTS \
     -e LC_ALL=en_US.UTF-8 \
@@ -88,7 +81,6 @@ docker_cmd="docker run --detach=true \
     --tmpfs ${HOME}/.config \
     --tmpfs ${HOME}/.cassandra \
     -v ${HOME}/.local:${HOME}/.local \
-    -v ${HOME}/.ccm:${HOME}/.ccm \
     --network=host --privileged \
     ${DOCKER_IMAGE} bash -c '$*'"
 
